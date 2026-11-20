@@ -1,0 +1,83 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Files</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="shared">
+
+    <div class="shared-header">
+        <div>
+            <span class="eyebrow">FILE MANAGER</span>
+            <h1><%= type === "received" ? "Received Files" : "Sent Files" %></h1>
+            <p><%= type === "received" ? "Files shared with you by other users." : "Manage all the files you have shared." %></p>
+        </div>
+        <a href="/dashboard" class="back-btn">← Dashboard</a>
+    </div>
+
+    <div class="shared-stats">
+        <div class="stat-icon">📁</div>
+        <div>
+            <h2><%= shares.length %></h2>
+            <p><%= type === "received" ? "Received Files" : "Shared Files" %></p>
+        </div>
+    </div>
+
+    <div class="section-heading">
+        <h2>Your Files</h2>
+        <span><%= shares.length %> Files</span>
+    </div>
+
+    <div class="file-grid">
+
+        <% shares.forEach(share => { %>
+
+            <% if (share.file) { %>
+
+                <div class="file-card">
+
+                    <div class="file-top">
+                        <div class="file-icon">📄</div>
+                        <span class="file-status">Shared</span>
+                    </div>
+
+                    <h3><%= share.file.originalName %></h3>
+
+                    <p class="user-info">
+                        <%= type === "received" ? "↙ From: " : "↗ To: " %>
+                        <strong><%= type === "received" ? share.sender.username : share.receiver.username %></strong>
+                    </p>
+
+                    <div class="file-footer">
+                        <span>Available to download</span>
+                        <a href="/download/<%= share.file._id %>">Download ↗</a>
+                    </div>
+
+                </div>
+
+            <% } %>
+
+        <% }) %>
+
+    </div>
+
+    <% if (!shares.length) { %>
+        <div class="empty-state">
+            <div>📂</div>
+            <h2>No files yet</h2>
+            <p>Your shared files will appear here.</p>
+            <a href="/dashboard">Go to Dashboard</a>
+        </div>
+    <% } %>
+
+</div>
+
+</body>
+</html>

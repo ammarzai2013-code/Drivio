@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivio | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #0d0b13;
+            color: #f5f3fa;
+            min-height: 100vh;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 245px;
+            background: #13101d;
+            border-right: 1px solid #292334;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 800;
+            color: #a78bfa;
+            margin: 0 0 45px 10px;
+        }
+
+        .logo span { color: white; }
+
+        .nav a {
+            display: block;
+            text-decoration: none;
+            color: #aaa4b8;
+            padding: 14px 16px;
+            border-radius: 10px;
+            margin-bottom: 9px;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: #281e3c;
+            color: #c4a7ff;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .sidebar-bottom a {
+            display: block;
+            color: #fefdff;
+            text-decoration: none;
+            background: rgb(231, 97, 97);
+            padding: 13px;
+            border-radius: 9px;
+        }
+
+        .sidebar-bottom a:hover {
+            background: #281e3c;
+            color: white;
+        }
+
+        .main {
+            margin-left: 245px;
+            width: calc(100% - 245px);
+            padding: 38px 45px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 38px;
+        }
+
+        .topbar h2 {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .user {
+            background: #1b1725;
+            border: 1px solid #30283d;
+            padding: 11px 17px;
+            border-radius: 12px;
+            color: #c4a7ff;
+            font-size: 13px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 9px;
+        }
+
+        .welcome p {
+            color: #9690a3;
+            font-size: 14px;
+        }
+
+        .upload-section {
+            background: linear-gradient(120deg, #211832, #171323);
+            border: 1px solid #493363;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 38px;
+        }
+
+        .upload-section h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .upload-section p {
+            color: #aaa2b7;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .upload-form {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        input[type="file"] {
+            flex: 1;
+            min-width: 220px;
+            background: #0f0c17;
+            border: 1px solid #393047;
+            border-radius: 10px;
+            padding: 12px;
+            color: #aaa4b8;
+        }
+
+        input[type="file"]::file-selector-button {
+            background: #35254e;
+            color: white;
+            border: none;
+            padding: 9px 13px;
+            border-radius: 7px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            border-radius: 9px;
+            padding: 12px 23px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .upload-btn {
+            background: #9b70e8;
+            color: white;
+        }
+
+        .upload-btn:hover {
+            background: #ad88f5;
+            transform: translateY(-2px);
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            font-size: 20px;
+        }
+
+        .section-heading span {
+            color: #9690a3;
+            font-size: 13px;
+        }
+
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .file-card {
+            background: #171421;
+            border: 1px solid #2d263a;
+            border-radius: 15px;
+            padding: 21px;
+            transition: .25s;
+            min-width: 0;
+        }
+
+        .file-card:hover {
+            border-color: #8058bd;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px #0004;
+        }
+
+        .file-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: #302142;
+            color: #c5a5ff;
+            font-size: 23px;
+            margin-bottom: 17px;
+        }
+
+        .file-card h3 {
+            font-size: 14px;
+            overflow-wrap: anywhere;
+            margin-bottom: 8px;
+        }
+
+        .file-card small {
+            color: #918a9f;
+            font-size: 12px;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 9px;
+            margin-top: 19px;
+            flex-wrap: wrap;
+        }
+
+        .file-actions a {
+            text-decoration: none;
+            background: #302142;
+            color: #c9aaff;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .file-actions form {
+            display: contents;
+        }
+
+        .delete-btn {
+            background: #3a202a;
+            color: #ff8c9b;
+            padding: 9px 12px;
+            font-size: 12px;
+        }
+
+        .receiver-search {
+            width: 100%;
+            margin-top: 13px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #100d18;
+            color: #c5b9d8;
+            border: 1px solid #393047;
+            outline: none;
+        }
+
+        .receiver {
+            width: 100%;
+            margin-top: 13px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #100d18;
+            color: #c5b9d8;
+            border: 1px solid #393047;
+            outline: none;
+        }
+
+        .empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 55px 20px;
+            border: 1px dashed #423650;
+            border-radius: 15px;
+            color: #9890a5;
+        }
+
+        .empty div {
+            font-size: 35px;
+            margin-bottom: 13px;
+        }
+
+        @media(max-width: 800px) {
+            .sidebar {
+                width: 75px;
+                padding: 25px 10px;
+            }
+
+            .logo {
+                font-size: 16px;
+                margin-left: 5px;
+            }
+
+            .nav a, .sidebar-bottom a {
+                font-size: 0;
+                text-align: center;
+                padding: 15px 5px;
+            }
+
+            .main {
+                margin-left: 75px;
+                width: calc(100% - 75px);
+                padding: 25px 18px;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .topbar h2 { font-size: 19px; }
+            .welcome h1 { font-size: 24px; }
+            .topbar { gap: 10px; }
+            .user { font-size: 11px; }
+            .upload-section { padding: 20px; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="dashboard">
+
+    <aside class="sidebar">
+        <div class="logo">Drivio<span>.</span></div>
+
+        <nav class="nav">
+            <a href="/dashboard" class="active">▦ &nbsp; Dashboard</a>
+            <a href="/received">⇩ &nbsp; Received Files</a>
+            <a href="/sent">⇧ &nbsp; Shared Files</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="/logout">↪ &nbsp; Logout</a>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <h2>Dashboard</h2>
+            <div class="user">👤 <%= currentUser.username %></div>
+        </div>
+
+        <section class="welcome">
+            <h1>Welcome back, <%= currentUser.username %> 👋</h1>
+            <p>Manage, upload and share your files in one place.</p>
+        </section>
+
+        <section class="upload-section">
+            <h3>Upload New File</h3>
+            <p>Choose a file from your device and store it securely.</p>
+
+            <form action="/upload" method="POST" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="file" required>
+                <button class="upload-btn" type="submit">＋ Upload File</button>
+            </form>
+        </section>
+
+        <div class="section-heading">
+            <h2>Your Files</h2>
+            <span><%= files.length %> Files</span>
+        </div>
+
+        <section class="file-grid">
+            <% if (files.length === 0) { %>
+                <div class="empty">
+                    <div>📁</div>
+                    <h3>No files uploaded yet</h3>
+                    <p>Upload your first file to get started.</p>
+                </div>
+            <% } %>
+
+            <% files.forEach(file => { %>
+                <article class="file-card">
+                    <div class="file-icon">📄</div>
+
+                    <h3><%= file.originalName %></h3>
+                    <small>Uploaded file</small>
+
+                    <div class="file-actions">
+                        <a href="/download/<%= file._id %>">↓ Download</a>
+
+                        <form action="/delete/<%= file._id %>" method="POST"
+                              onsubmit="return confirm('Delete this file?')">
+                            <button class="delete-btn" type="submit">Delete</button>
+                        </form>
+                    </div>
+
+                    <input class="receiver-search" type="text"
+                           placeholder="Search username..."
+                           oninput="loadUsers(this, '<%= file._id %>')">
+                    <select class="receiver" onchange="shareFile(this, '<%= file._id %>')">
+                        <option value="">Select user to share...</option>
+                    </select>
+                </article>
+            <% }) %>
+        </section>
+
+    </main>
+</div>
+
+<script>
+    async function loadUsers(input, fileId) {
+        const card = input.closest(".file-card");
+        const select = card.querySelector(".receiver");
+        const query = input.value.trim();
+
+        select.innerHTML = '<option value="">Searching users...</option>';
+
+        try {
+            const response = await fetch('/search?q=' + encodeURIComponent(query));
+            const users = await response.json();
+
+            select.innerHTML = '<option value="">Select user to share...</option>';
+
+            users.forEach(user => {
+                const option = document.createElement("option");
+                option.value = user._id;
+                option.textContent = user.username;
+                select.appendChild(option);
+            });
+
+            if (!users.length) {
+                select.innerHTML = '<option value="">No users found</option>';
+            }
+        } catch (error) {
+            select.innerHTML = '<option value="">Could not load users</option>';
+            console.log(error);
+        }
+    }
+
+    function shareFile(select, fileId) {
+        if (!select.value) return;
+
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "/share/" + fileId;
+
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "receiver";
+        input.value = select.value;
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+</body>
+</html>

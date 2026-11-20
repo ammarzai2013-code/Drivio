@@ -1,0 +1,249 @@
+
+/* PREMIUM SHARED FILES */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.shared {
+    max-width: 1250px;
+    margin: auto;
+    padding: 55px 40px;
+}
+
+.shared-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    color: #c084fc;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.shared-header h1 {
+    font-size: 34px;
+    margin-top: 12px;
+    letter-spacing: -1px;
+}
+
+.shared-header p {
+    color: #96919f;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.back-btn {
+    padding: 12px 20px;
+    border: 1px solid #393044;
+    border-radius: 9px;
+    background: #191522;
+    color: white;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.back-btn:hover {
+    background: #30203e;
+}
+
+.shared-stats {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: linear-gradient(120deg, #21152e, #17131f);
+    border: 1px solid #443052;
+    border-radius: 14px;
+    padding: 22px;
+    max-width: 260px;
+    margin-bottom: 45px;
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    background: #382348;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 24px;
+}
+
+.shared-stats h2 {
+    font-size: 25px;
+}
+
+.shared-stats p {
+    color: #aaa0b5;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 19px;
+}
+
+.section-heading span {
+    color: #a99bb7;
+    font-size: 12px;
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.file-card {
+    background: #17141f;
+    border: 1px solid #30283a;
+    border-radius: 15px;
+    padding: 22px;
+    transition: .3s;
+    min-width: 0;
+}
+
+.file-card:hover {
+    transform: translateY(-5px);
+    border-color: #8745b5;
+    box-shadow: 0 12px 35px #0005;
+}
+
+.file-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.file-icon {
+    width: 53px;
+    height: 53px;
+    display: grid;
+    place-items: center;
+    background: #30203e;
+    border-radius: 12px;
+    font-size: 25px;
+}
+
+.file-status {
+    background: #30203e;
+    color: #d8a8ff;
+    font-size: 10px;
+    padding: 6px 11px;
+    border-radius: 20px;
+}
+
+.file-card h3 {
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    margin-bottom: 15px;
+}
+
+.user-info {
+    font-size: 12px;
+    color: #99919f;
+    margin-bottom: 22px;
+    overflow-wrap: anywhere;
+}
+
+.user-info strong {
+    color: #d6c9e1;
+}
+
+.file-footer {
+    border-top: 1px solid #30283a;
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-footer span {
+    color: #817b89;
+    font-size: 10px;
+}
+
+.file-footer a {
+    background: #8138ad;
+    color: white;
+    padding: 9px 13px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: .3s;
+}
+
+.file-footer a:hover {
+    background: #a34bd3;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 75px 20px;
+    background: #17141f;
+    border: 1px dashed #443052;
+    border-radius: 16px;
+}
+
+.empty-state div {
+    font-size: 45px;
+    margin-bottom: 18px;
+}
+
+.empty-state h2 {
+    font-size: 21px;
+}
+
+.empty-state p {
+    color: #999;
+    font-size: 13px;
+    margin: 12px 0 22px;
+}
+
+.empty-state a {
+    display: inline-block;
+    background: #8138ad;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+@media(max-width: 600px) {
+    .shared {
+        padding: 30px 18px;
+    }
+
+    .shared-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .shared-header h1 {
+        font-size: 27px;
+    }
+
+    .shared-stats {
+        max-width: 100%;
+    }
+
+    .file-grid {
+        grid-template-columns: 1fr;
+    }
+}
